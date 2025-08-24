@@ -62,12 +62,12 @@
 
  ```
 
-<h2>Class : </h2>
+><h2>Class : </h2>
 
 &rarr; Class is a keyword which is used to create a non premitive datatype.<br>
 &rarr; Class is a logical entity which behaves as a blue print of an object.
 
-## Object :
+>## Object :
 
 &rarr; Object is a huge memory block which is used to store the  non-static members.<br>
 &rarr; Object is a real entity which is mirror image of a blue print class.<br>
@@ -109,7 +109,7 @@ public void details(){
 
 ```
 The above program is a blue print for the mobile and that can calling by the **Mobile store** class .
-#### user-logic class : ####
+>#### user-logic class : ####
 ```
 class MobileStore{ //user logic (or) Control-logic class
     public static void main(String[]args){
@@ -188,7 +188,7 @@ class School {
     }
 }
 ```
-### Find the minimum marks in between 3 students ###
+- ### Find the minimum marks in between 3 students ###
 ```
 // Blue print class 
 class Students {
@@ -238,7 +238,7 @@ class School {
     }
 }
 ```
-### Find the second maximum marks of the 3 students ###
+- ### Find the second maximum marks of the 3 students ###
 ``` 
 // blue print class
 
@@ -314,7 +314,7 @@ public static Students secmax(Students s1,Students s2,Students s3){
 	}
 }
 ```
-### Find all the employees whose salary is greater than average salary and print their details ###
+- ### Find all the employees whose salary is greater than average salary and print their details ###
 ```
 class Employee{
 	int id;
@@ -376,7 +376,256 @@ class Office{
 	}	
 }
 ```
+>## Constructor ##
+
+&rarr; The constructor is a special kind of method which is used to intilize non static properties of an object.
+
+### Rules to create a Constructor :- ###
+
+- The Constructer name should be same as <u>**"Class name"**</u> .
+- Constructer Should not have any return type even void also.
+
+> ### Syntax ###
+```
+ClassName( formal Arguments ) {
+       -----------
+       -----------  //Statements
+       -----------
+       -----------
+}
+```
+### Example:-1 ###
+ ```
+ class A{
+    int a;
+    String s;
+    A(int a,String s){ 
+        this.a=a;
+        this.s=s;
+    }
+ }
+ public static void main(String[]args){
+
+    A ob=new(100,"Hello");
+ }
+ ```
+### Example:-2 ###
+```
+//Blue print class
+
+class Movie{
+    String title;
+    String Director;
+    double budget;
+    double duration;
+    
+    Movie (String title,String Director,double budget,double duration){
+        this.title=title;
+        this.Director=Director;
+        this.budget=budget;
+        this.duration=duration;
+    }
+    public void details(){
+        System.out.println("title:"+title);
+        System.out.println("Director:"+Director);
+        System.out.println("budget:"+budget);
+        System.out.println("duration:"+duration);
+        System.out.println("------------------------------");
+    }
+
+}
+// user-logic class
+
+class Main{
+    public static void main(String[]args){
+        Movie m1=new Movie("RRR","SS.rajmoli",200000000,2.5);
+        Movie m2=new Movie("peddi","bucchi",10000000,3.0);
+        Movie m3=new Movie("rc17","Sukumar",200000000,3.5);
+
+        m1.details();
+        m2.details();
+        m3.details();
+
+    }
+}
+```
+>**Output:**
+```
+
+title:RRR
+Director:SS.rajmoli
+budget:2.0E8
+duration:2.5
+------------------------------
+title:peddi
+Director:bucchi
+budget:1.0E7
+duration:3.0
+------------------------------
+title:rc17
+Director:Sukumar
+budget:2.0E8
+duration:3.5
+------------------------------
+```
+- Constructer executes Automatcically during the object creation .
+- Constructer is also a non static member.
+
+`Note:-`<br>
+- We can also intilize static properties with the help of constructer but it not recomended to use but it is not recomended to use .Because static members can be accessed with out object creation.
+
+**Example:-**
+```
+class A{
+    int a;
+    static int b;
+    A(int a,int b){
+        this.a=a;
+        this.b=b;
+    } 
+    public static void main(String[]args){
+        System.out.println(b);
+        A ob=new A(10,20);
+        System.out.println(ob.a);
+        System.out.println(b);
+    }
+}
+```
+## Types of Constructers : ##
+ 
+We have a 2 types of constructers 
+1. Predefined Constructor
+2. User defined Constructor 
+
+### 1. Predefined Constructer : ### 
+&rarr; Default Constructer is only the constructer Which is a predefined constructer and it is automatically created by the compiler, Only when we dont't create any constructer.
 
 
+> **Syntax :**
+```
+B(){ // Default Constructer
 
+    super();
 
+}
+```
+### 2. User defined Constructers : ###
+
+The user defined constructers can be classified into 2 types :
+- Paramererized constructers
+- Non- paramenterized constructers
+
+**1. Parameterized Constructers :** <br>
+&rarr; A constructer which is created manually  by the developer with **Formal Arguments** is called **" parameterized constructer "**.<br>
+&rarr; By using parametrized constructer we can perform dynamic intilization of objects.
+
+**2. Non-parameterized Constructor / No Argument Constructer :**<br>
+&rarr; The constructer which is created manually by the developer with **no formal arguments** is called **"Non-parameterized Constructor"**.
+>**Syntax :**
+```
+B(){
+    this.a=22;
+    this.d=23.2;
+}
+```
+- **Example:**
+```
+class B(){
+    int a;
+    double b;
+    B(int a,double b){
+        this.a=a;
+        this.b=b;
+    }
+    B(){
+        this.a=22;
+        this.b=23.3;
+    }
+    public void data(){
+        System.out.println(a);
+        System.out.println(b);
+    }
+    Public static void main(String[]args){
+        B ob1=new B(10,23,4);
+        ob1.data();
+        System.out.println("---------------------");
+        B ob2 =new B(123,73.2);
+        ob2.data();
+        System.out.println("---------------------");
+        B ob3 =new B(123,73.2);
+        ob3.data();
+        System.out.println("---------------------");
+        B ob4 =new B(123,73.2);
+        ob4.data();
+        System.out.println("---------------------");
+    }
+}
+```
+**Output :**
+```
+10
+23.4
+---------------------
+123
+73.2
+---------------------
+123
+73.2
+---------------------
+123
+73.2
+---------------------
+```
+
+&rarr; Constructor is mandatory for every class.<br>
+&rarr; We cannot call the constructor Explicitly.
+
+>## Constructor Overloading : ##
+&rarr; The process of creating multiple construtor with different **formal arguments** is called **" Constructor Overloading "**.<br>
+&rarr; The main purpose of constructor overloading is create (or) represent the same object in different forms.
+
+**Example :**
+```
+class Box{
+    double length;
+    double breadth;
+    double height;
+    Box(double length,double breadth){
+        this.length=length;
+        this.breadth=breadth;
+    }
+    Box(double length,double breadth, double height){
+        this.length=length;
+        this.breadth=breadth;
+        this.height=height;
+    }
+    public void display(){
+	System.out.println("length: "+length);
+	System.out.println("Breadth: "+breadth);
+	System.out.println("Height: "+height);
+	System.out.println("---------------------");
+     }
+	
+ 
+}
+class main{
+    public static void main(String[]args){
+        Box b1=new Box(10,20);
+	b1.display();
+        Box b2=new Box(10,20,30);
+	b2.display();
+
+    }
+}
+```
+**Output :**
+```
+length: 10.0
+Breadth: 20.0
+Height: 0.0
+---------------------
+length: 10.0
+Breadth: 20.0
+Height: 30.0
+---------------------
+```
