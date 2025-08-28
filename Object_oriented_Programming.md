@@ -629,3 +629,65 @@ Breadth: 20.0
 Height: 30.0
 ---------------------
 ```
+>## Constructer chaining :- ##
+&rarr; The processing of calling from one constructor from another constructor by using **" this( ) "** or **" super( ) "** statements is called **constructor chaining**.<br>
+&rarr;The purpose of constructor chaining is to avoid redundency of the code between the constructors.
+
+### 1. This( ) Statement:- ### 
+&rarr; This( ) statement is used to call constructor of the same class based on Actual and formal arguments.<br>
+&rarr; This( ) statement should be the 1st statement in the constructor.<br>
+&rarr;This( ) statement is not mandotory statement, if we need it we have to create it manually .<br>
+&rarr;In a class if we have " n constructors" then we can have maximum "n-1" this( ) Statements minimum "0" this( ) call Statements.<br>
+&rarr; In a class if we have only one constructor these we can't have this( ) Statements because of the some reasons.
+
+### 2.Super( ) Statement:- ###
+
+&rarr; The super( ) statement is used to call constructor of another class i.e parent class.<br>
+&rarr; Super( ) statement is also the first statement in the constructor.<br>
+&rarr; Super( ) Statement is mandatory for every class.<br>
+&rarr; If we don't create any statement then super( ) statement is automatically created by the compiler.<br>
+&rarr; If a class if we have "n constructor" then we can have maximum "n" super( ) statements and minimum "1" super( ) statement.<br>
+>Example-1:
+```
+class Box{
+    int length,breadth,height;
+    Box(int length,int breadth){
+        this.length=length;
+        this.breadth=breadth;
+    }
+    Box(int length,int breadth,int height){
+        this(length,breadth); //This calling statement
+        this.height=height;
+    }
+    public void area(){
+        if(height==0)
+            System.out.println("Area:"+length*breadth);
+        else
+            System.out.println("Volume:"+length*breadth*height);
+    }
+}
+```
+>Example-2:- 
+```
+class Student{
+    String name ;
+    int num;
+    double tenth,twelth,graduation;
+    Student (String name ,int num,double tenth){
+        this.name=name;
+        this.num=num;
+        this.tenth;
+    }
+    Student (String name ,int num,double tenth,double twelth){
+        this(name,num,tenth);
+        this.twelth;
+    }
+    Student (String name ,int num,double tenth,double twelth double twelth){
+        this(name,num,tenth,twelth);
+        this.graduation=graduation;
+        
+    }
+}
+```
+
+
