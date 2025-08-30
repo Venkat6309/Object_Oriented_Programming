@@ -689,5 +689,457 @@ class Student{
     }
 }
 ```
+>## Constructor Chaining : ##
+&rarr;The processing of calling from one constructer from another constructer by using **this() or Super()** statements is called **" constructer chaining. "**<br>
+&rarr;The purpose of constructor chaining is to avoid redundency of the code between the constructors.
+
+### 1. This() Ststement :- ###
+&rarr; This() statement is used to call constructes of the same class based on Actual and formal Arguments.<br>
+&rarr; The **This()** Statement should be the 1st Statement in the constructor."<br>
+&rarr; This statement is not a mandatory Statement, if we need it we have to create it manually.<br>
+&rarr; In a Class if we have **n-constructors** then we can have **maximum "n-1" this( ) Statements and minimum " 0 " this( )call Statements.**<br>
+&rarr; In a class if We have only one constructor then we can't have this( ) statements because of some reasons.
+
+1. Super( ) statement is mandatory in class.
+2. It may lead to recursion.
+3. It may lead to compile time binding error.
+
+&rarr; We can have this ( ) statement only we have overloaded constructors.
+
+### Super( ) Statements : ###
+&rarr;  Super( ) Statement is used to call Constructor of another class i.e **parent class.**<br>
+&rarr; Super( ) Statement is also the first statement in the constructor.<br>
+&rarr; Super() statement is mandatory for every class.<br>
+&rarr; If we don't create any Statement then super( ) statement is automatically created by the compiler.<br>
+&rarr; In a class if we have n-constructors then maximum " n " super( ) call statements and minimum " 1 " suuper () statement.
+
+>**Example :**
+```
+Class Box{
+    int length;
+    int breadth:
+    int height;
+    Box (int length, int breadth){
+        this.length=length;
+        this.breadth=breadth;
+    }
+    Box (int length, int breadth, int height) {
+        this(length, breadth);  // calling before constructer 
+        this.height=height;
+    }
+        
+        public void area( ){
+            if (heigth==0)
+                System.out.println("Area:"+length*breadth);
+            else
+                 System.out.println("Volume :"+length*breadth*height);
+
+```
+>**Example :**
+```
+Class Student{
+    Sting name;
+    int num;
+    double tenth, twelth, grad;
+    Student (string name int num, double tenth){
+        this. name = name;
+        this. num= num;
+        this. tenth= tenth;
+    }
+    Student (sting name, int num, double tenth, double twelth) {
+        this (name, num, tenth);
+        this.twelth=twelth;
+    }
+    Student (string name, int num, double tenth doub twelth, double grad){
+        this (name, num, tenth, twelth);
+        this.grad = grad;
+    }
+}
+
+```
+>## Copy Constructor : ##
+&rarr; copy constructor is used to create a new object with the data of already existed object.<br>
+&rarr; copy constructor is also a parameterized constructor.
+&rarr; copy constructor takes reference of the old object So we have to create a formal Arguments of Same class type.<br>
+>**Example :**
+```
+class A {
+    int a = 10;
+    A (int a) {
+        this.a=a;
+    }
+    A (A obj) {
+        this.a = obj.a;
+    }
+}
+
+Class main{
+    Public static void main(String[] args) {
+        A ob = new A(10);
+        ob. a=200;
+        A ob1=ob;
+        ob1.a=500;
+        A ob2 = new A(ob);
+        ob2. a=525;
+        A ob3 = new A(ob);
+        ob. a=25;
+    }
+}
+
+```
+>## Encapsulation : ##
+
+&rarr; The process of **binding (or) Wrapping** the properties and behaviors into a single unit is called **" encapsulation "**.<br>
+
+### Advantages of encapsulation : ###
+1. code reusability
+2. Security
+
+>### 1. Code Reusability : ###
+&rarr; We are creating one encapsulated class we can create any number of objects for the Same class, and also we can use the same object many no.of times.
+
+>### 2. Security : ###
+&rarr; We are providing security by making the properties as private and we are providing control or limited access to the users by using, public **" getter "** and **" setter "** methods. <br>
+&rarr; And placing the conditions within those for Validation or Authentication.<br>
+
+### getter method (Read / Access) : ###
+&rarr; It is a helper method which is used to read or Access from private property.<br>
+&rarr; It is recommended to create the getter method name by prefixing the with the word **"get"**.
+&rarr; for getter method **We must and should have a return type** other than void.
+### Setter method (Intilize): ###
+&rarr; Setter method is a **helper method** which is used to **intilize or reintilized** private properties.<br>
+&rarr; It is recommended to create a setter method by prefixing its name with the word **" set "**.<br>
+&rarr; for Setter method We should have the return type **" Void"** but we have to create a fomal Argument to take input to the method for intilizing of private property.<br>
+>**Example :**
+```
+Class A{
+    private int a = 10,
+    private double b=20.3;
+    public int getA( ){ // read or access
+        return a;  
+    }
+    public void SetA (int a){ //intilize
+        this.a=a;
+    }
+    public double getB( ){ 
+        return b;
+    }
+    public double SetB( ){
+        this.b=b;
+    }
+}
+```
+
+>**Example:-1**
+```
+// clock example in encapsulation
+class Clock {
+    private int hrs;
+    private int min;
+    private int sec;
+
+    // Default constructor
+    Clock() {
+        hrs = 12;
+        min = 0;
+        sec = 0;
+    }
+
+    // Parameterized constructor
+    Clock(int hrs, int min, int sec) {
+        setHrs(hrs);
+        setMin(min);
+        setSec(sec);
+    }
+
+    // Getter & Setter for seconds
+    public int getSec() {
+        return sec;
+    }
+
+    public void setSec(int sec) {
+        if (sec >= 0 && sec <= 59)
+            this.sec = sec;
+        else
+            System.out.println("Invalid seconds");
+    }
+
+    // Getter & Setter for minutes
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        if (min >= 0 && min <= 59)
+            this.min = min;
+        else
+            System.out.println("Invalid minutes");
+    }
+
+    // Getter & Setter for hours
+    public int getHrs() {
+        return hrs;
+    }
+
+    public void setHrs(int hrs) {
+        if (hrs >= 1 && hrs <= 12)
+            this.hrs = hrs;
+        else
+            System.out.println("Invalid hours");
+    }
+
+    // Display method
+    public void showTime() {
+        System.out.println(hrs + ":" + min + ":" + sec);
+    }
+}
+
+// Main class
+class ClockTower {
+    public static void main(String[] args) {
+        Clock c1 = new Clock();
+        c1.setSec(20);
+        c1.setMin(30);
+        c1.setHrs(8);
+
+        System.out.println(c1.getHrs() + ":" + c1.getMin() + ":" + c1.getSec());
+
+        Clock c2 = new Clock(4, 25, 19);
+        c2.showTime();
+    }
+}
+```
+> **Example :-2**
+```
+// Example on Employees by using Encapsulation
+
+    class Employee{   //Blue print class
+        String name:
+        int id:
+        private double sal;
+        Static double basesal=15000;
+        public double getsal(){
+            return sal;
+        }
+        public void Setsal(double sal){
+            if (sal>basesal && sal<=500000)
+                this.sal=sal
+            else
+                System.out.println("invalid Salary");
+        }
+        Public void details(){
+            System.out.println("Name: "+name);
+            System.out.println("id: "+id);
+            System.out.println("Salary: "+sal);
+            System.out.println("Base Salary: "+basesal);
+        }
+    }
+
+    class Office{
+        public static void main(String[]args){
+            Employee e1 = new Employee();
+            el.name= "Ramesh";
+            e1.id= 101;
+            el.getsal (15000.00);
+
+            Employee e2 = new Employer ():
+            e2.name = "Suresh"
+            e2.id = 102;
+            e2.getsal (20000.0);
+
+            Employer e3 = new Employee ();
+            e3.name = "Teja";
+            e3.id = 103;
+            e3.get sal (40,000);
+
+            Employee e4 = new Employee();
+            e4.name="Raju";
+            e4.id=104;
+            e4.getsal(55000.00);
+        }
+    }
+```
+>## Data Transfer Objects: ##
+
+&nbsp;&nbsp;&nbsp;Encapsulated classes are also called **Data Transfer objects (DTO) or "Java beans" or "POJO".**
+
+## Relation :- ##
+
+Relation specifies bond between the objects and 
+<br>we have 2 types of relations.
+
+1. Has-A relation
+
+2. Is-A relation (Inheritance)
+
+>### Has-A relation : ###
+
+&rarr; It is a whole-part relation where one Object present inside another object as its own property.
+<br>
+
+we have 2 types of Has-A relation
+- Composition
+- Aggregation
+
+### Composition: ###
+
+&rarr; Composition specifies Strong bond between the Objets, Where we cannot have one object with out another object.
+
+### Aggregation : ###
+&rarr; Aggregation specifies weak bond between the objects where we can have one object with or without another object.<br>
+&rarr; Aggregation also says, that The objects are partially dependent on each other.
+
+![](./images/relation.jpg)
+
+>**Example :**
+```
+//Engine blue print class 
+
+Class Engine{
+    int cc;
+    double hp;
+    int milage;
+    Engine (int cc, double hp, int milage){
+        this.cc=cc;
+        this.hp=hp:
+        this.milage=milage
+    }
+}
+
+// car blue print class
+
+Class car{
+    String brand:
+    double price;
+    String color;
+    Engine engine;
+    Car (String brand, double price, String color,Engine engine){
+        this.brand=brand;
+        this.price=price;
+        this.color=color;
+        this.engine=engine;
+    }
+}
+
+//User logic class
+class Carshowroom{
+    public static void main (string[]args){
+        Car c1 = new Car("AUDI",5000000,"black",new Engine(1000, 1800,12));
+        System.out.println(c1.branch);
+        System.out.println(c1.price);
+        System.out.println(c1.color);
+        System.out.println(c1.engine.cc);
+        System.out.println(c1.engine.hp);
+        System.out.println(c1.engine.milage);
+    }
+}
+```
+>**Example:- Pen Has-A cap**
+```
+class pen{
+	String color;
+	Cap cap;
+	pen(String color,Cap cap){
+		this.color=color;
+		this.cap=cap;
+	}
+	public void write(){
+		System.out.println("Writing");
+	}
+}
+class Cap{
+	public void Opencap(){
+		System.out.println("Opening cap");
+	}
+	public void Closecap(){
+		System.out.println("Closing cap");
+	}
+}
+class Writingnotes{
+	public static void main(String[]args){
+		pen p1 =new pen("blue",new Cap());
+		p1.cap.Opencap();
+		p1.write();
+		p1.cap.Closecap();
+	}
+}
+```
+>**Example:- ATM Has-A Cashdispensor**
+```
+class CashDispensor {
+    static int cashavailable = 10000;  
+}
+
+class ATM {
+    public void Withdraw(int amount) {
+        if (amount > 0 && CashDispensor.cashavailable >= amount) {
+            CashDispensor.cashavailable -= amount; // reduce cash
+            System.out.println("Withdraw Successful. Remaining Balance: " + CashDispensor.cashavailable);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+
+    public void Deposit(int amount) {
+        if (amount > 0) {
+            CashDispensor.cashavailable += amount; // increase cash
+            System.out.println("Deposit Successful. Current Balance: " + CashDispensor.cashavailable);
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+
+    public void CheckBalance() {
+        System.out.println("Your balance is: " + CashDispensor.cashavailable);
+    }
+}
+
+class SBIATM {
+    public static void main(String[] args) {
+        ATM a1 = new ATM();
+
+        a1.Withdraw(1000);
+        a1.Deposit(5000);
+        a1.Withdraw(12000);
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
